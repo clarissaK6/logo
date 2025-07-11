@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VelanDev Solutions Logo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to bottom, #0f1a2b, #1e2e48);
+      overflow: hidden;
+      font-family: 'Cinzel', serif;
+      color: white;
+    }
+
+    .logo-container {
+      position: relative;
+      text-align: center;
+      z-index: 10;
+      top: 40%;
+      transform: translateY(-50%);
+    }
+
+    .logo-line1 {
+      font-size: 4.5rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, gold, #f7e98e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+      display: inline-block;
+      position: relative;
+    }
+
+    .logo-line1:hover {
+      transform: scale(1.05);
+      text-shadow: 0 0 30px rgba(255, 215, 0, 1);
+    }
+
+    .v-letter {
+      font-size: 7rem;
+      font-family: 'Great Vibes', cursive;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .logo-line2 {
+      font-size: 1.4rem;
+      letter-spacing: 8px;
+      margin-top: 5px;
+      color: #f7e98e;
+      text-shadow: 0 0 10px gold;
+      position: relative;
+      left: 105px; /* adjust to align under the 'd' of velandev */
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 0 6px gold;
+      animation: float 6s infinite ease-in-out;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-600px) translateX(100px) scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    .toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+    }
+
+    .toggle label {
+      background-color: #222;
+      border-radius: 20px;
+      padding: 10px 20px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px gold;
+      font-family: 'Cinzel', serif;
+    }
+
+    .toggle input {
+      display: none;
+    }
+
+    .toggle label:hover {
+      background-color: #444;
+    }
+  </style>
+</head>
+<body>
+
+<div class="toggle">
+  <label>
+    <input type="checkbox" id="sparkleToggle" checked>
+    ✨ Sparkles ON/OFF
+  </label>
+</div>
+
+<div class="logo-container">
+  <div class="logo-line1">
+    <span class="v-letter">Ꝟ</span>elandev
+  </div>
+  <div class="logo-line2">
+    SOLUTIONS
+  </div>
+</div>
+
+<script>
+  const toggle = document.getElementById("sparkleToggle");
+
+  function createSparkle() {
+    const sparkle = document.createElement("div");
+    sparkle.classList.add("sparkle");
+    sparkle.style.left = Math.random() * window.innerWidth + "px";
+    sparkle.style.top = (Math.random() * window.innerHeight + 300) + "px";
+    sparkle.style.animationDuration = (Math.random() * 3 + 4) + "s";
+    sparkle.style.opacity = Math.random();
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => {
+      sparkle.remove();
+    }, 7000);
+  }
+
+  function sparkleLoop() {
+    if (toggle.checked) {
+      createSparkle();
+    }
+    requestAnimationFrame(sparkleLoop);
+  }
+
+  sparkleLoop();
+</script>
+
+</body>
+</html>
